@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Englannin kielioppiharjoitukset 2</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 1.08em;
+            border-bottom: 2px solid transparent;
+            transition: background 0.2s, border 0.2s;
+        }
+        nav a:hover, nav a.active-tab {
+            background-color: #555;
+            border-bottom: 2px solid #fff;
+        }
+        section {
+            margin: 24px auto;
+            padding: 24px 28px;
+            background-color: white;
+            border-radius: 10px;
+            max-width: 580px;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+            display: none;
+        }
+        section.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        h3 {
+            margin-bottom: 12px;
+            margin-top: 24px;
+        }
+        .instructions {
+            margin-bottom: 16px;
+            color: #222;
+            font-size: 1em;
+            background: #e7f5ff;
+            padding: 10px 14px;
+            border-radius: 6px;
+        }
+        .task {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .task label {
+            font-weight: normal;
+        }
+        .task input[type="text"], .task select {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.06em;
+            margin-top: 14px;
+            margin-bottom: 8px;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 13px;
+            color: #222;
+            background: #f5f5f5;
+            padding: 10px 14px;
+            border-radius: 6px;
+            white-space: pre-line;
+            font-size: 1em;
+        }
+        hr {
+            border: none;
+            border-top: 1.5px solid #eee;
+            margin: 34px 0 24px 0;
+        }
+        .right { color: #198754; font-weight:bold;}
+        .wrong { color: #d9534f; font-weight:bold;}
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+        @media (max-width: 700px) {
+            nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            nav a {
+                padding: 14px 8vw;
+                border-bottom: none;
+                border-left: 4px solid transparent;
+                font-size: 1.11em;
+            }
+            nav a:hover, nav a.active-tab {
+                background: #555;
+                border-left: 4px solid #fff;
+            }
+            section {
+                max-width: 99vw;
+                margin: 8vw 0;
+                padding: 20px 4vw;
+            }
+        }
+        @media (max-width: 460px) {
+            section {
+                padding: 12px 2vw;
+            }
+            .task input[type="text"], .task select, button {
+                font-size: 1em;
+                padding: 11px;
+            }
+        }
+        footer {
+            text-align: center;
+            font-size: 0.85em;
+            color: #777;
+            padding: 18px 10px 12px 10px;
+            margin-top: 34px;
+            letter-spacing: 0.03em;
+            background: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Englannin kielioppiharjoitukset 2</h1>
+</header>
+<nav>
+    <a href="#" onclick="showSection('comparatives1', event)" id="tab-comparatives1">Komparatiivi ja superlatiivi 1</a>
+    <a href="#" onclick="showSection('comparatives2', event)" id="tab-comparatives2">Komparatiivi ja superlatiivi 2</a>
+    <a href="#" onclick="showSection('genitive', event)" id="tab-genitive">Genetiivi (omistusmuoto)</a>
+    <a href="#" onclick="showSection('irregular-plurals', event)" id="tab-irregular-plurals">Epäsäännölliset monikot</a>
+    <a href="#" onclick="showSection('phonemes', event)" id="tab-phonemes">Tunnista äänteet</a>
+</nav>
+
+<!-- Komparatiivi ja superlatiivi 1 -->
+<section id="comparatives1" class="section">
+    <h2>Komparatiivi ja superlatiivi 1</h2>
+    <div class="instructions">Täydennä oikea muoto: isompi (bigger), isoin (biggest) jne.</div>
+    <h3>Harjoitus 1</h3>
+    <div class="task"><label>1. Täydennä: tall, taller, ___</label><input type="text" id="comp1-1"></div>
+    <div class="task"><label>2. Täydennä: big, ___, biggest</label><input type="text" id="comp1-2"></div>
+    <div class="task"><label>3. Täydennä: small, ___, smallest</label><input type="text" id="comp1-3"></div>
+    <div class="task"><label>4. Täydennä: old, ___, oldest</label><input type="text" id="comp1-4"></div>
+    <div class="task"><label>5. Täydennä: nice, ___, nicest</label><input type="text" id="comp1-5"></div>
+    <div class="task"><label>6. Täydennä: ___, younger, youngest</label><input type="text" id="comp1-6"></div>
+    <div class="task"><label>7. Täydennä: strong, stronger, ___</label><input type="text" id="comp1-7"></div>
+    <div class="task"><label>8. Täydennä: easy, ___, easiest</label><input type="text" id="comp1-8"></div>
+    <div class="task"><label>9. Täydennä: fast, ___, fastest</label><input type="text" id="comp1-9"></div>
+    <div class="task"><label>10. Täydennä: slow, slower, ___</label><input type="text" id="comp1-10"></div>
+    <button onclick="checkComp1()">Tarkista</button>
+    <div id="comp1-result" class="result"></div>
+    <hr>
+    <h3>Harjoitus 2</h3>
+    <div class="task"><label>1. Täydennä: short, shorter, ___</label><input type="text" id="comp1b-1"></div>
+    <div class="task"><label>2. Täydennä: cheap, ___, cheapest</label><input type="text" id="comp1b-2"></div>
+    <div class="task"><label>3. Täydennä: clever, cleverer, ___</label><input type="text" id="comp1b-3"></div>
+    <div class="task"><label>4. Täydennä: slow, slower, ___</label><input type="text" id="comp1b-4"></div>
+    <div class="task"><label>5. Täydennä: big, bigger, ___</label><input type="text" id="comp1b-5"></div>
+    <div class="task"><label>6. Täydennä: small, ___, smallest</label><input type="text" id="comp1b-6"></div>
+    <div class="task"><label>7. Täydennä: smart, smarter, ___</label><input type="text" id="comp1b-7"></div>
+    <div class="task"><label>8. Täydennä: nice, ___, nicest</label><input type="text" id="comp1b-8"></div>
+    <div class="task"><label>9. Täydennä: old, ___, oldest</label><input type="text" id="comp1b-9"></div>
+    <div class="task"><label>10. Täydennä: fast, ___, fastest</label><input type="text" id="comp1b-10"></div>
+    <button onclick="checkComp1b()">Tarkista</button>
+    <div id="comp1b-result" class="result"></div>
+</section>
+
+<!-- Komparatiivi ja superlatiivi 2 -->
+<section id="comparatives2" class="section">
+    <h2>Komparatiivi ja superlatiivi 2</h2>
+    <div class="instructions">Täydennä lauseeseen komparatiivi- tai superlatiivimuoto.</div>
+    <h3>Harjoitus 1</h3>
+    <div class="task"><label>1. Lisa is ___ than Anna. (tall)</label><input type="text" id="comp2-1"></div>
+    <div class="task"><label>2. Max is the ___ in the class. (young)</label><input type="text" id="comp2-2"></div>
+    <div class="task"><label>3. My car is ___ than your car. (cheap)</label><input type="text" id="comp2-3"></div>
+    <div class="task"><label>4. This book is the ___ of all. (good)</label><input type="text" id="comp2-4"></div>
+    <div class="task"><label>5. My bag is ___ than yours. (heavy)</label><input type="text" id="comp2-5"></div>
+    <div class="task"><label>6. Today is the ___ day this week. (cold)</label><input type="text" id="comp2-6"></div>
+    <div class="task"><label>7. Dogs are ___ than cats. (friendly)</label><input type="text" id="comp2-7"></div>
+    <div class="task"><label>8. This test was the ___ of all. (easy)</label><input type="text" id="comp2-8"></div>
+    <div class="task"><label>9. Mary is ___ than Tom. (old)</label><input type="text" id="comp2-9"></div>
+    <div class="task"><label>10. This street is the ___ in town. (long)</label><input type="text" id="comp2-10"></div>
+    <button onclick="checkComp2()">Tarkista</button>
+    <div id="comp2-result" class="result"></div>
+    <hr>
+    <h3>Harjoitus 2</h3>
+    <div class="task"><label>1. My bike is ___ than your bike. (new)</label><input type="text" id="comp2b-1"></div>
+    <div class="task"><label>2. This cake is the ___ I've ever eaten. (delicious)</label><input type="text" id="comp2b-2"></div>
+    <div class="task"><label>3. Jane is ___ than Peter. (happy)</label><input type="text" id="comp2b-3"></div>
+    <div class="task"><label>4. This problem is ___ than that one. (difficult)</label><input type="text" id="comp2b-4"></div>
+    <div class="task"><label>5. Winter is the ___ season. (cold)</label><input type="text" id="comp2b-5"></div>
+    <div class="task"><label>6. His story is ___ than mine. (funny)</label><input type="text" id="comp2b-6"></div>
+    <div class="task"><label>7. This is the ___ movie of all. (interesting)</label><input type="text" id="comp2b-7"></div>
+    <div class="task"><label>8. My sister is ___ than me. (young)</label><input type="text" id="comp2b-8"></div>
+    <div class="task"><label>9. This is the ___ answer. (good)</label><input type="text" id="comp2b-9"></div>
+    <div class="task"><label>10. Summer days are ___ than winter days. (long)</label><input type="text" id="comp2b-10"></div>
+    <button onclick="checkComp2b()">Tarkista</button>
+    <div id="comp2b-result" class="result"></div>
+</section>
+
+<!-- Genetiivi (omistusmuoto) -->
+<section id="genitive" class="section">
+    <h2>Genetiivi (omistusmuoto)</h2>
+    <div class="instructions">Kirjoita lauseeseen oikea omistusmuoto (genetiivi), esim. "Peter's bike", "my", "her", "ours".</div>
+    <h3>Harjoitus 1</h3>
+    <div class="task"><label>1. This is ___ (minun) book.</label><input type="text" id="gen1-1"></div>
+    <div class="task"><label>2. That is ___ (Sara) dog.</label><input type="text" id="gen1-2"></div>
+    <div class="task"><label>3. ___ (meidän) house is big.</label><input type="text" id="gen1-3"></div>
+    <div class="task"><label>4. Is this ___ (sinun) pen?</label><input type="text" id="gen1-4"></div>
+    <div class="task"><label>5. ___ (hänen, pojasta) ball is blue.</label><input type="text" id="gen1-5"></div>
+    <div class="task"><label>6. ___ (hänen, tytöstä) phone is pink.</label><input type="text" id="gen1-6"></div>
+    <div class="task"><label>7. Where is ___ (heidän) school?</label><input type="text" id="gen1-7"></div>
+    <div class="task"><label>8. These are ___ (meidän) shoes.</label><input type="text" id="gen1-8"></div>
+    <div class="task"><label>9. Is this ___ (teidän) car?</label><input type="text" id="gen1-9"></div>
+    <div class="task"><label>10. ___ (sen, eläin) tail is long.</label><input type="text" id="gen1-10"></div>
+    <button onclick="checkGen1()">Tarkista</button>
+    <div id="gen1-result" class="result"></div>
+    <hr>
+    <h3>Harjoitus 2</h3>
+    <div class="task"><label>1. This is ___ (minun) cat.</label><input type="text" id="gen2-1"></div>
+    <div class="task"><label>2. ___ (hänen, tytöstä) name is Anna.</label><input type="text" id="gen2-2"></div>
+    <div class="task"><label>3. That is ___ (hänen, pojasta) hat.</label><input type="text" id="gen2-3"></div>
+    <div class="task"><label>4. ___ (heidän) toys are new.</label><input type="text" id="gen2-4"></div>
+    <div class="task"><label>5. ___ (meidän) teacher is nice.</label><input type="text" id="gen2-5"></div>
+    <div class="task"><label>6. ___ (teidän) ball is here.</label><input type="text" id="gen2-6"></div>
+    <div class="task"><label>7. ___ (sinun) bag is red.</label><input type="text" id="gen2-7"></div>
+    <div class="task"><label>8. ___ (sen, eläin) ears are big.</label><input type="text" id="gen2-8"></div>
+    <div class="task"><label>9. ___ (minun) brother is funny.</label><input type="text" id="gen2-9"></div>
+    <div class="task"><label>10. ___ (Sara) bike is yellow.</label><input type="text" id="gen2-10"></div>
+    <button onclick="checkGen2()">Tarkista</button>
+    <div id="gen2-result" class="result"></div>
+</section>
+
+<!-- Epäsäännölliset monikot -->
+<section id="irregular-plurals" class="section">
+    <h2>Epäsäännölliset monikot</h2>
+    <div class="instructions">Kirjoita sanan monikkomuoto englanniksi.</div>
+    <h3>Harjoitus 1</h3>
+    <div class="task"><label>1. one child, two ___</label><input type="text" id="plur1-1"></div>
+    <div class="task"><label>2. one man, two ___</label><input type="text" id="plur1-2"></div>
+    <div class="task"><label>3. one woman, two ___</label><input type="text" id="plur1-3"></div>
+    <div class="task"><label>4. one foot, two ___</label><input type="text" id="plur1-4"></div>
+    <div class="task"><label>5. one tooth, two ___</label><input type="text" id="plur1-5"></div>
+    <div class="task"><label>6. one mouse, two ___</label><input type="text" id="plur1-6"></div>
+    <div class="task"><label>7. one goose, two ___</label><input type="text" id="plur1-7"></div>
+    <div class="task"><label>8. one person, two ___</label><input type="text" id="plur1-8"></div>
+    <div class="task"><label>9. one fish, two ___</label><input type="text" id="plur1-9"></div>
+    <div class="task"><label>10. one sheep, two ___</label><input type="text" id="plur1-10"></div>
+    <button onclick="checkPlur1()">Tarkista</button>
+    <div id="plur1-result" class="result"></div>
+    <hr>
+    <h3>Harjoitus 2</h3>
+    <div class="task"><label>1. There are three ___ in the park. (child)</label><input type="text" id="plur2-1"></div>
+    <div class="task"><label>2. I saw two ___ on the farm. (goose)</label><input type="text" id="plur2-2"></div>
+    <div class="task"><label>3. The ___ are eating cheese. (mouse)</label><input type="text" id="plur2-3"></div>
+    <div class="task"><label>4. Her ___ are white. (tooth)</label><input type="text" id="plur2-4"></div>
+    <div class="task"><label>5. Five ___ were playing outside. (woman)</label><input type="text" id="plur2-5"></div>
+    <div class="task"><label>6. My ___ hurt after walking. (foot)</label><input type="text" id="plur2-6"></div>
+    <div class="task"><label>7. The ___ are loud at night. (man)</label><input type="text" id="plur2-7"></div>
+    <div class="task"><label>8. I met three ___ today. (person)</label><input type="text" id="plur2-8"></div>
+    <div class="task"><label>9. Look at those ___! (sheep)</label><input type="text" id="plur2-9"></div>
+    <div class="task"><label>10. There are many ___ in the sea. (fish)</label><input type="text" id="plur2-10"></div>
+    <button onclick="checkPlur2()">Tarkista</button>
+    <div id="plur2-result" class="result"></div>
+</section>
+
+<!-- Tunnista äänteet -->
+<section id="phonemes" class="section">
+    <h2>Tunnista äänteet</h2>
+    <div class="instructions">Kirjoita sana normaalisti. Sana on annettu foneettisilla merkeillä (IPA). Kuvasta saat lisävihjeen.</div>
+    <h3>Harjoitus 1</h3>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/26BD.svg" alt="soccer ball" width="34" style="vertical-align:middle"> 1. /bɔːl/</label><input type="text" id="phon1-1"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F41F.svg" alt="fish" width="34" style="vertical-align:middle"> 2. /fɪʃ/</label><input type="text" id="phon1-2"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F45E.svg" alt="shoe" width="34" style="vertical-align:middle"> 3. /ʃuː/</label><input type="text" id="phon1-3"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1FA91.svg" alt="chair" width="34" style="vertical-align:middle"> 4. /tʃeə(r)/</label><input type="text" id="phon1-4"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F34E.svg" alt="apple" width="34" style="vertical-align:middle"> 5. /ˈæp.əl/</label><input type="text" id="phon1-5"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/2600.svg" alt="sun" width="34" style="vertical-align:middle"> 6. /sʌn/</label><input type="text" id="phon1-6"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F95A.svg" alt="egg" width="34" style="vertical-align:middle"> 7. /eɡ/</label><input type="text" id="phon1-7"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F436.svg" alt="dog" width="34" style="vertical-align:middle"> 8. /dɒɡ/</label><input type="text" id="phon1-8"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F3E0.svg" alt="house" width="34" style="vertical-align:middle"> 9. /haʊs/</label><input type="text" id="phon1-9"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F333.svg" alt="tree" width="34" style="vertical-align:middle"> 10. /triː/</label><input type="text" id="phon1-10"></div>
+    <button onclick="checkPhon1()">Tarkista</button>
+    <div id="phon1-result" class="result"></div>
+    <hr>
+    <h3>Harjoitus 2</h3>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F408.svg" alt="cat" width="34" style="vertical-align:middle"> 1. /kæt/</label><input type="text" id="phon2-1"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F44D.svg" alt="thumb" width="34" style="vertical-align:middle"> 2. /θʌm/</label><input type="text" id="phon2-2"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F411.svg" alt="sheep" width="34" style="vertical-align:middle"> 3. /ʃiːp/</label><input type="text" id="phon2-3"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F430.svg" alt="rabbit" width="34" style="vertical-align:middle"> 4. /ˈræb.ɪt/</label><input type="text" id="phon2-4"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F34A.svg" alt="orange" width="34" style="vertical-align:middle"> 5. /ˈɒr.ɪndʒ/</label><input type="text" id="phon2-5"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/2602.svg" alt="umbrella" width="34" style="vertical-align:middle"> 6. /ʌmˈbrɛl.ə/</label><input type="text" id="phon2-6"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F410.svg" alt="goat" width="34" style="vertical-align:middle"> 7. /ɡəʊt/</label><input type="text" id="phon2-7"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F451.svg" alt="queen" width="34" style="vertical-align:middle"> 8. /kwiːn/</label><input type="text" id="phon2-8"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/1F993.svg" alt="zebra" width="34" style="vertical-align:middle"> 9. /ˈziː.brə/</label><input type="text" id="phon2-9"></div>
+    <div class="task"><label><img src="https://openmoji.org/data/color/svg/260E.svg" alt="phone" width="34" style="vertical-align:middle"> 10. /fəʊn/</label><input type="text" id="phon2-10"></div>
+    <button onclick="checkPhon2()">Tarkista</button>
+    <div id="phon2-result" class="result"></div>
+</section>
+
+<footer>
+    Created by Eveliina Koivuneva 2025
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    showSection('comparatives1');
+});
+
+function showSection(sectionId, evt) {
+    let sections = document.querySelectorAll('.section');
+    sections.forEach(section => section.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    let tabs = document.querySelectorAll('nav a');
+    tabs.forEach(tab => tab.classList.remove('active-tab'));
+    let activeTab = document.getElementById('tab-' + sectionId);
+    if (activeTab) activeTab.classList.add('active-tab');
+}
+
+// Yleistarkistusfunktio
+function showResultWithCorrect(ids, resultId, corrects, alt=[]) {
+    let correct = 0, txt = "";
+    for(let i=0;i<ids.length;i++) {
+        let user = (document.getElementById(ids[i]).value || '').trim().toLowerCase();
+        let cor = corrects[i];
+        let ok = (Array.isArray(cor) ? cor : [cor]).some(val=>user === val);
+        if(!ok && alt[i] && alt[i].length)
+            ok = alt[i].some(val=>user === val);
+        if(ok) {
+            correct++;
+            txt += `<span class="right">${i+1}. ${user}</span> (Oikea vastaus: ${Array.isArray(cor)?cor[0]:cor})\n`;
+        } else {
+            let correctShow = Array.isArray(cor)?cor[0]:cor;
+            txt += `<span class="wrong">${i+1}. ${user}</span> (Oikea vastaus: ${correctShow})\n`;
+        }
+    }
+    document.getElementById(resultId).innerHTML = `Oikein: ${correct}/${ids.length}\n\n${txt}`;
+}
+
+// Komparatiivi ja superlatiivi 1
+function checkComp1() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`comp1-${i+1}`),
+        "comp1-result",
+        ["tallest","bigger","smaller","older","nicer","young","strongest","easier","faster","slowest"]
+    );
+}
+function checkComp1b() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`comp1b-${i+1}`),
+        "comp1b-result",
+        ["shortest","cheaper","cleverest","slowest","biggest","smaller","smartest","nicer","older","faster"]
+    );
+}
+// Komparatiivi ja superlatiivi 2
+function checkComp2() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`comp2-${i+1}`),
+        "comp2-result",
+        ["taller","youngest","cheaper","best","heavier","coldest","friendlier","easiest","older","longest"]
+    );
+}
+function checkComp2b() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`comp2b-${i+1}`),
+        "comp2b-result",
+        ["newer","most delicious","happier","more difficult","coldest","funnier","most interesting","younger","best","longer"]
+    );
+}
+// Genetiivi
+function checkGen1() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`gen1-${i+1}`),
+        "gen1-result",
+        ["my","sara's","our","your","his","her","their","our","your","its"]
+    );
+}
+function checkGen2() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`gen2-${i+1}`),
+        "gen2-result",
+        ["my","her","his","their","our","your","your","its","my","sara's"]
+    );
+}
+// Epäsäännölliset monikot
+function checkPlur1() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`plur1-${i+1}`),
+        "plur1-result",
+        ["children","men","women","feet","teeth","mice","geese","people","fish","sheep"]
+    );
+}
+function checkPlur2() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`plur2-${i+1}`),
+        "plur2-result",
+        ["children","geese","mice","teeth","women","feet","men","people","sheep","fish"]
+    );
+}
+// Tunnista äänteet
+function checkPhon1() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`phon1-${i+1}`),
+        "phon1-result",
+        ["ball","fish","shoe","chair","apple","sun","egg","dog","house","tree"]
+    );
+}
+function checkPhon2() {
+    showResultWithCorrect(
+        Array.from({length:10},(_,i)=>`phon2-${i+1}`),
+        "phon2-result",
+        ["cat","thumb","sheep","rabbit","orange","umbrella","goat","queen","zebra","phone"]
+    );
+}
+</script>
+</body>
+</html>
